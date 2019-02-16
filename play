@@ -1,0 +1,41 @@
+#!/usr/bin/env php
+<?php
+
+include './Battle/States/Range.php';
+include './Battle/Skills/Skills.php';
+include './Battle/Skills/Skill.php';
+include './Battle/Skills/RapidStrike.php';
+include './Battle/Skills/MagicShield.php';
+include './Battle/States/State.php';
+include './Battle/Creatures/Creature.php';
+include './Battle/Battle.php';
+
+
+$hero = new Creature(
+    'Orderus',
+    new Range(70,100),
+    new Range(70,80),
+    new Range(45,55),
+    new Range(40,50),
+    new Range(10,30),
+    new Skills(
+        new RapidStrike(10, Skill::ATTACK),
+        new MagicShield(20, Skill::DEFENCE)
+    ),
+    new State()
+);
+
+$wildBeast = new Creature(
+    'Salerus',
+    new Range(60,90),
+    new Range(60,90),
+    new Range(45,60),
+    new Range(40,60),
+    new Range(25,40),
+    new Skills(),
+    new State()
+);
+
+$battle = new Battle($hero, $wildBeast, 20);
+
+$battle->start();
