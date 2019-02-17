@@ -8,7 +8,7 @@ class RapidStrike extends Skill
     const DESCRIPTION = 'Strike twice while it’s his turn to attack; there’s a 10% chance he’ll use this skill
                         every time he attacks';
 
-    public function run(int $damage)
+    public function run(float $damage): float
     {
         return $damage;
     }

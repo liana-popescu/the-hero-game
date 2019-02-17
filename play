@@ -11,11 +11,6 @@ include './Battle/Creatures/Creature.php';
 include './Battle/Battle.php';
 
 
-$skill = new MagicShield(80, Skill::ATTACK);
-
-var_dump($skill);
-exit();
-
 $hero = new Creature(
     'Orderus',
     new Range(70,100),

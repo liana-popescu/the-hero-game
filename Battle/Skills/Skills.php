@@ -2,22 +2,38 @@
 
 include './Skill.php';
 
+/**
+ * Class Skills
+ */
 class Skills
 {
+    /** @var Skill[]  */
     private $skills;
 
+    /**
+     * Skills constructor.
+     * @param Skill ...$skills
+     */
     public function __construct(Skill ...$skills)
     {
         $this->skills = $skills;
     }
 
+    /**
+     * @return Skill[]
+     */
     public function all()
     {
         return $this->skills;
     }
 
-    public function add(Skill $skill)
+    /**
+     * @param Skill ...$skills
+     */
+    public function add(Skill ...$skills)
     {
-        array_push($this->skills, $skill);
+        foreach ($skills as $skill) {
+            array_push($this->skills, $skill);
+        }
     }
 }

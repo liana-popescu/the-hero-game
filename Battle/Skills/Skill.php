@@ -76,8 +76,8 @@ abstract class Skill
     }
 
     /**
-     * @param int $damage
-     * @return int
+     * @param float $damage
+     * @return float
      */
-    public abstract function run(int $damage);
+    public abstract function run(float $damage);
 }
