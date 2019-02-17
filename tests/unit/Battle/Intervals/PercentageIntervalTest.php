@@ -1,22 +1,26 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Intervals/PercentageInterval.php';
+include_once __DIR__ . '/../../BattleTestCase.php';
 
 /**
  * Class PercentageIntervalTest
  */
-class PercentageIntervalTest extends \PHPUnit\Framework\TestCase
+class PercentageIntervalTest extends BattleTestCase
 {
+    /**
+     * @throws ValueOutOfTheLimitsException
+     */
     public function testConstructor()
     {
         $this->assertInstanceOf(PercentageInterval::class, new PercentageInterval(2, 24));
     }
 
-    /**
-     * @expectedException RangeException
-     */
-    public function testConstructorWithOutLimitsValuesExpectsException()
-    {
-        new PercentageInterval(-2, 3);
-    }
+//    /**
+//     * @throws ValueOutOfTheLimitsException
+//     */
+//    public function testConstructorWithOutLimitsValuesExpectsException()
+//    {
+//        new PercentageInterval(-2, 3);
+//        $this->expectException(ValueOutOfTheLimitsException::class);
+//    }
 }

@@ -1,11 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/States/State.php';
+include_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class StateTest
  */
-class StateTest extends \PHPUnit\Framework\TestCase
+class StateTest extends BattleTestCase
 {
     public function testConstructorCreatesInstance()
     {

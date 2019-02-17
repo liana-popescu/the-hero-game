@@ -1,16 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Intervals/NumericInterval.php';
-include __DIR__ . '/../../../../Battle/Intervals/PercentageInterval.php';
-include __DIR__ . '/../../../../Battle/Skills/Skills.php';
-include __DIR__ . '/../../../../Battle/Skills/Skill.php';
-include __DIR__ . '/../../../../Battle/States/State.php';
-include __DIR__ . '/../../../../Battle/Creatures/Creature.php';
+require_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class CreatureTest
  */
-class CreatureTest extends \PHPUnit\Framework\TestCase
+class CreatureTest extends BattleTestCase
 {
     /**
      * @throws ReflectionException
@@ -246,21 +241,21 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $numericIntervalMock = $this->createMock(NumericInterval::class);
         $percentageIntervalMock = $this->createMock(PercentageInterval::class);
 
-        $skillMock = $this->getMockBuilder(Skill::class)
+        $skillMock = $this->getMockBuilder(MagicShield::class)
             ->disableOriginalConstructor()
             ->setMethods(['getUsage'])
             ->getMock();
-        $skillMock->expects($this->once())
+        $skillMock->expects($this->any())
             ->method('getUsage')
-            ->willReturn(Skill::ATTACK);
+            ->willReturn('attack');
 
         $skillsMock = $this->getMockBuilder(Skills::class)
             ->disableOriginalConstructor()
             ->setMethods(['all'])
             ->getMock();
-        $skillsMock->expects($this->once())
+        $skillsMock->expects($this->any())
             ->method('all')
-            ->willReturn($skillMock);
+            ->willReturn([$skillMock]);
 
         $stateMock = $this->createMock(State::class);
 
@@ -280,7 +275,7 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $this->assertIsArray($attackSkills);
         $this->assertEquals(1, count($attackSkills));
 
-        $defenceSkills= $creature->getSkillsFilteredByUsage(Skill::DEFENCE);
+        $defenceSkills = $creature->getSkillsFilteredByUsage(Skill::DEFENCE);
 
         $this->assertIsArray($defenceSkills);
         $this->assertEquals(0, count($defenceSkills));

@@ -1,12 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Skills/Skill.php';
-include __DIR__ . '/../../../../Battle/Skills/MagicShield.php';
+require_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class MagicShieldTest
  */
-class MagicShieldTest extends \PHPUnit\Framework\TestCase
+class MagicShieldTest extends BattleTestCase
 {
     /**
      * @throws ValueOutOfTheLimitsException

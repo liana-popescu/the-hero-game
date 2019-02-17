@@ -1,5 +1,7 @@
 <?php
 
+require_once __DIR__ . '/../Exceptions/ValueOutOfTheLimitsException.php';
+
 /**
  * Class Interval
  */
@@ -15,6 +17,7 @@ abstract class Interval
      * Interval constructor.
      * @param int $min
      * @param int $max
+     * @throws ValueOutOfTheLimitsException
      */
     public function __construct(int $min, int $max)
     {
@@ -32,10 +35,16 @@ abstract class Interval
         return rand($this->min, $this->max);
     }
 
+
     /**
      * @param int $min
      * @param int $max
-     * @throws RangeException
+     * @throws ValueOutOfTheLimitsException
      */
-    protected abstract function validateLimits(int $min, int $max);
+    protected function validateLimits(int $min, int $max)
+    {
+        if ((! is_int($min)) || (! is_int($max))) {
+            throw new ValueOutOfTheLimitsException('Out of the bounds');
+        }
+    }
 }

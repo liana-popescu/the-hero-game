@@ -1,6 +1,6 @@
 <?php
 
-include './Skill.php';
+require_once __DIR__ . '/Skill.php';
 
 /**
  * Class Skills

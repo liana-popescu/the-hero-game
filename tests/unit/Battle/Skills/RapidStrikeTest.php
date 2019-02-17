@@ -1,12 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Skills/Skill.php';
-include __DIR__ . '/../../../../Battle/Skills/RapidStrike.php';
+require_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class RapidStrikeTest
  */
-class RapidStrikeTest extends \PHPUnit\Framework\TestCase
+class RapidStrikeTest extends BattleTestCase
 {
     /**
      * @throws ValueOutOfTheLimitsException

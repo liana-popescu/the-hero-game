@@ -1,6 +1,6 @@
 <?php
 
-include_once  __DIR__ . '/Interval.php';
+require_once __DIR__ . '/Interval.php';
 
 /**
  * Class NumericInterval

@@ -1,58 +1,58 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Intervals/Interval.php';
-include __DIR__ . '/../../../../Battle/Intervals/PercentageInterval.php';
+require_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class IntervalTest
  */
-class IntervalTest extends \PHPUnit\Framework\TestCase
+class IntervalTest extends BattleTestCase
 {
-//    /**
-//     * @dataProvider inRangeValues
-//     *
-//     * @param $min
-//     * @param $max
-//     */
-//    public function testConstructorCreatesInstance($min, $max)
-//    {
-//        $this->assertInstanceOf(Interval::class, new PercentageInterval($min, $max));
-//    }
-
     /**
-     * @dataProvider outOfRangeValues
-     *
-     * @expectedException RangeException
+     * @dataProvider inRangeValues
      *
      * @param $min
      * @param $max
-     * @throws RangeException
+     * @throws ValueOutOfTheLimitsException
      */
-    public function testConstructorWithWrongValuesExpectsException($min, $max)
+    public function testConstructorCreatesInstance($min, $max)
     {
-        new PercentageInterval($min, $max);
+        $this->assertInstanceOf(Interval::class, new PercentageInterval($min, $max));
     }
 
 //    /**
-//     * @throws RangeException
+//     * @dataProvider outOfRangeValues
+//     *
+//     * @param $min
+//     * @param $max
+//     * @throws ValueOutOfTheLimitsException
 //     */
-//    public function testGetRandomValue()
+//    public function testConstructorWithWrongValuesExpectsException($min, $max)
 //    {
-//        $range = new PercentageInterval(3, 20);
-//        $value = $range->getRandomValue();
+//        new PercentageInterval($min, $max);
 //
-//        $this->assertNotNull($value);
-//        $this->assertIsNumeric($value);
+//        $this->expectException(ValueOutOfTheLimitsException::class);
 //    }
-//
-//    public function inRangeValues()
-//    {
-//        return [
-//            [2, 5],
-//            [0, 60],
-//            [67, 100],
-//        ];
-//    }
+
+    /**
+     * @throws ValueOutOfTheLimitsException
+     */
+    public function testGetRandomValue()
+    {
+        $range = new PercentageInterval(3, 20);
+        $value = $range->getRandomValue();
+
+        $this->assertNotNull($value);
+        $this->assertIsNumeric($value);
+    }
+
+    public function inRangeValues()
+    {
+        return [
+            [2, 5],
+            [0, 60],
+            [67, 100],
+        ];
+    }
 
     public function outOfRangeValues()
     {

@@ -1,10 +1,9 @@
 <?php
 
-include './../Intervals/NumericInterval.php';
-include './../Intervals/PercentageInterval.php';
-include './../States/State.php';
-include './../Skills/Skills.php';
-include './../Skills/Skill.php';
+require_once __DIR__ .'/../Intervals/NumericInterval.php';
+require_once __DIR__ . '/../Intervals/PercentageInterval.php';
+require_once __DIR__ .'/../States/State.php';
+require_once __DIR__ . '/../Skills/Skills.php';
 
 /**
  * Class CreatureTest
@@ -119,6 +118,7 @@ class Creature
     {
         $skills = array();
 
+        /** @var Skill $skill */
         foreach ($this->skills->all() as $skill) {
             if ($skill->getUsage() === $usage) {
                 array_push($skills, $skill);

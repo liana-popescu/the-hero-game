@@ -1,13 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Skills/Skill.php';
-include __DIR__ . './../../../../Battle/Skills/MagicShield.php';
-include __DIR__ . './../../../../Battle/Exceptions/ValueOutOfTheLimitsException.php';
+require_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class SkillTest
  */
-class SkillTest extends \PHPUnit\Framework\TestCase
+class SkillTest extends BattleTestCase
 {
     /**
      * @dataProvider inRangeValues
@@ -21,19 +19,18 @@ class SkillTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf(Skill::class, new MagicShield($chance, $usage));
     }
 
-    /**
-     * @dataProvider outOfRangeValues
-     *
-     * @expectedException ValueOutOfTheLimitsException
-     *
-     * @param $chance
-     * @param $usage
-     * @throws ValueOutOfTheLimitsException
-     */
-    public function testConstructorReceivesValuesOutOfRangeExpectException($chance, $usage)
-    {
-        new MagicShield($chance, $usage);
-    }
+//    /**
+//     * @dataProvider outOfRangeValues
+//     *
+//     * @param $chance
+//     * @param $usage
+//     * @throws ValueOutOfTheLimitsException
+//     */
+//    public function testConstructorReceivesValuesOutOfRangeExpectException($chance, $usage)
+//    {
+//        new MagicShield($chance, $usage);
+//        $this->expectException(ValueOutOfTheLimitsException::class);
+//    }
 
     /**
      * @throws ValueOutOfTheLimitsException
@@ -52,7 +49,7 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     {
         $skill = new MagicShield(40, Skill::DEFENCE);
 
-        $this->assertEquals(40, $skill->getChance());
+        $this->assertEquals(Skill::DEFENCE, $skill->getUsage());
     }
 
     /**

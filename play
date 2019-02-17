@@ -1,16 +1,10 @@
 #!/usr/bin/env php
 <?php
 
-include './Battle/Intervals/NumericInterval.php';
-include './Battle/Intervals/PercentageInterval.php';
-include './Battle/Skills/Skills.php';
-include './Battle/Skills/Skill.php';
-include './Battle/Skills/RapidStrike.php';
-include './Battle/Skills/MagicShield.php';
-include './Battle/States/State.php';
-include './Battle/Creatures/Creature.php';
-include './Battle/Battle.php';
-
+require_once __DIR__ . '/Battle/Creatures/Creature.php';
+require_once __DIR__ . '/Battle/Skills/RapidStrike.php';
+require_once __DIR__ . '/Battle/Skills/MagicShield.php';
+require_once __DIR__ . '/Battle/Battle.php';
 
 $hero = new Creature(
     'Orderus',

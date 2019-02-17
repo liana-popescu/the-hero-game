@@ -1,6 +1,6 @@
 <?php
 
-include './../Exceptions/ValueOutOfTheLimitsException.php';
+require_once __DIR__ . '/../Exceptions/ValueOutOfTheLimitsException.php';
 
 /**
  * Class Skill
@@ -23,7 +23,7 @@ abstract class Skill
      * Skill constructor.
      * @param int $chance
      * @param string $usage
-     * @throws ValueOutOfTheLimitsException
+     * @throws \ValueOutOfTheLimitsException
      */
     public function __construct(int $chance, string $usage)
     {

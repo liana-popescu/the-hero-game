@@ -1,11 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Intervals/NumericInterval.php';
+include_once __DIR__ . '/../../BattleTestCase.php';
 
 /**
  * Class NumberIntervalTest
  */
-class NumberIntervalTest extends \PHPUnit\Framework\TestCase
+class NumberIntervalTest extends BattleTestCase
 {
     public function testConstructor()
     {

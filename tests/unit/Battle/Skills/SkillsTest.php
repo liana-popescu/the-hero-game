@@ -1,13 +1,11 @@
 <?php
 
-include __DIR__ . '/../../../../Battle/Skills/Skills.php';
-include __DIR__ . '/../../../../Battle/Skills/Skill.php';
-include __DIR__ . '/../../../../Battle/Skills/MagicShield.php';
+require_once __DIR__. '/../../BattleTestCase.php';
 
 /**
  * Class SkillsTest
  */
-class SkillsTest extends \PHPUnit\Framework\TestCase
+class SkillsTest extends BattleTestCase
 {
     public function testConstructorCreatesInstance()
     {
@@ -15,7 +13,7 @@ class SkillsTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testAllReturnsTheSkills()
     {
@@ -31,7 +29,7 @@ class SkillsTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testAddSkillsToSkillsArray()
     {

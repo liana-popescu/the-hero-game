@@ -1,6 +1,7 @@
 <?php
 
-include './Creatures';
+require_once __DIR__ .'/Creatures/Creature.php';
+require_once __DIR__ . '/Skills/Skill.php';
 
 /**
  * Class Battle
