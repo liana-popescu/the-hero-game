@@ -79,7 +79,7 @@ class Battle
 
         $competitors = [$this->hero, $this->beast];
 
-        /** @var Creature $competitor */
+        /** @var CreatureTest $competitor */
         foreach ($competitors as $competitor) {
             echo "\n";
             echo $competitor->getName() . "\n";
@@ -224,7 +224,7 @@ class Battle
             : $this->setRoles($this->hero, $this->beast);
     }
 
-    protected function setRoles(Creature $attacker, Creature $defender)
+    protected function setRoles(CreatureTest $attacker, CreatureTest $defender)
     {
         $this->attacker = &$attacker;
         $this->defender = &$defender;

@@ -3,6 +3,9 @@
 include __DIR__ . '/../../../../Battle/Skills/Skill.php';
 include __DIR__ . '/../../../../Battle/Skills/MagicShield.php';
 
+/**
+ * Class MagicShieldTest
+ */
 class MagicShieldTest extends \PHPUnit\Framework\TestCase
 {
     /**

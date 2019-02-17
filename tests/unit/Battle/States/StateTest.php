@@ -2,6 +2,9 @@
 
 include __DIR__ . '/../../../../Battle/States/State.php';
 
+/**
+ * Class StateTest
+ */
 class StateTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstructorCreatesInstance()

@@ -4,6 +4,9 @@ include __DIR__ . '/../../../../Battle/Skills/Skills.php';
 include __DIR__ . '/../../../../Battle/Skills/Skill.php';
 include __DIR__ . '/../../../../Battle/Skills/MagicShield.php';
 
+/**
+ * Class SkillsTest
+ */
 class SkillsTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstructorCreatesInstance()

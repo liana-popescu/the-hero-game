@@ -4,6 +4,9 @@ include __DIR__ . '/../../../../Battle/Skills/Skill.php';
 include __DIR__ . './../../../../Battle/Skills/MagicShield.php';
 include __DIR__ . './../../../../Battle/Exceptions/ValueOutOfRangeException.php';
 
+/**
+ * Class SkillTest
+ */
 class SkillTest extends \PHPUnit\Framework\TestCase
 {
     /**

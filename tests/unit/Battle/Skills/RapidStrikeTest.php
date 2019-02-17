@@ -3,7 +3,9 @@
 include __DIR__ . '/../../../../Battle/Skills/Skill.php';
 include __DIR__ . '/../../../../Battle/Skills/RapidStrike.php';
 
-
+/**
+ * Class RapidStrikeTest
+ */
 class RapidStrikeTest extends \PHPUnit\Framework\TestCase
 {
     /**

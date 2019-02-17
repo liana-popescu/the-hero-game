@@ -1,56 +1,58 @@
 <?php
 
-include './../Ranges/Range.php';
+include './../Intervals/NumericInterval.php';
+include './../Intervals/PercentageInterval.php';
 include './../States/State.php';
 include './../Skills/Skills.php';
 include './../Skills/Skill.php';
 
 /**
- * Class Creature
+ * Class CreatureTest
  */
 class Creature
 {
     /** @var string  */
     protected $name;
 
-    /** @var Range  */
+    /** @var NumericInterval*/
     protected $healthRange;
 
-    /** @var Range */
+    /** @var NumericInterval */
     protected $strengthRange;
 
-    /** @var Range */
+    /** @var NumericInterval */
     protected $defenceRange;
 
-    /** @var Range */
+    /** @var NumericInterval */
     protected $speedRange;
 
-    /** @var Range  */
+    /** @var PercentageInterval  */
     protected $luckRange;
 
     /** @var State */
     protected $state;
 
+    /** @var Skills  */
     protected $skills;
 
     /**
      * Creature constructor.
      * @param string $name
-     * @param Range $healthRange
-     * @param Range $strengthRange
-     * @param Range $defenceRange
-     * @param Range $speedRange
-     * @param Range $luckRange
+     * @param NumericInterval $healthRange
+     * @param NumericInterval $strengthRange
+     * @param NumericInterval $defenceRange
+     * @param NumericInterval $speedRange
+     * @param PercentageInterval $luckRange
      * @param Skills $skills
      * @param State $state
      */
     public function __construct(
         string $name,
-        Range $healthRange,
-        Range $strengthRange,
-        Range $defenceRange,
-        Range $speedRange,
-        Range $luckRange,
+        NumericInterval $healthRange,
+        NumericInterval $strengthRange,
+        NumericInterval $defenceRange,
+        NumericInterval $speedRange,
+        PercentageInterval $luckRange,
         Skills $skills,
         State $state
     ) {
@@ -86,46 +88,6 @@ class Creature
     public function getSkills()
     {
         return $this->skills;
-    }
-
-    /**
-     * @param $healthRange
-     */
-    public function setHealthRange($healthRange)
-    {
-        $this->healthRange = $healthRange;
-    }
-
-    /**
-     * @param $strengthRange
-     */
-    public function setStrengthRange($strengthRange)
-    {
-        $this->strengthRange = $strengthRange;
-    }
-
-    /**
-     * @param $defenceRange
-     */
-    public function setDefenceRange($defenceRange)
-    {
-        $this->defenceRange = $defenceRange;
-    }
-
-    /**
-     * @param $speedRange
-     */
-    public function setSpeedRange($speedRange)
-    {
-        $this->speedRange = $speedRange;
-    }
-
-    /**
-     * @param $luckRange
-     */
-    public function setLuckRange($luckRange)
-    {
-        $this->luckRange = $luckRange;
     }
 
     /**
