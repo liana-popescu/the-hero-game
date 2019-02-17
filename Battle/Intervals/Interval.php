@@ -18,6 +18,8 @@ abstract class Interval
      */
     public function __construct(int $min, int $max)
     {
+        $this->validateLimits($min, $max);
+
         $this->min = $min;
         $this->max = $max;
     }
@@ -30,6 +32,10 @@ abstract class Interval
         return rand($this->min, $this->max);
     }
 
-    public abstract function validateLimits();
-
+    /**
+     * @param int $min
+     * @param int $max
+     * @throws RangeException
+     */
+    protected abstract function validateLimits(int $min, int $max);
 }

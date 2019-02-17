@@ -9,7 +9,7 @@ include __DIR__ . '/../../../../Battle/Skills/MagicShield.php';
 class MagicShieldTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testConstructorCreatesInstance()
     {
@@ -17,12 +17,12 @@ class MagicShieldTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testRunReturnsHalfOfTheDamage()
     {
         $magicShield = new MagicShield(30, Skill::ATTACK);
 
-        $this->assertEquals(-12, $magicShield->run(24));
+        $this->assertEquals(12, $magicShield->run(24, 24));
     }
 }

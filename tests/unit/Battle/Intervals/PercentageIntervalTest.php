@@ -1,12 +1,22 @@
 <?php
+
+include __DIR__ . '/../../../../Battle/Intervals/PercentageInterval.php';
+
 /**
- * Created by PhpStorm.
- * User: lpopescu
- * Date: 2019-02-17
- * Time: 16:15
+ * Class PercentageIntervalTest
  */
-
-class PercentageIntervalTest
+class PercentageIntervalTest extends \PHPUnit\Framework\TestCase
 {
+    public function testConstructor()
+    {
+        $this->assertInstanceOf(PercentageInterval::class, new PercentageInterval(2, 24));
+    }
 
+    /**
+     * @expectedException RangeException
+     */
+    public function testConstructorWithOutLimitsValuesExpectsException()
+    {
+        new PercentageInterval(-2, 3);
+    }
 }

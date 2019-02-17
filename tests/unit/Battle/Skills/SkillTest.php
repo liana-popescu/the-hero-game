@@ -2,7 +2,7 @@
 
 include __DIR__ . '/../../../../Battle/Skills/Skill.php';
 include __DIR__ . './../../../../Battle/Skills/MagicShield.php';
-include __DIR__ . './../../../../Battle/Exceptions/ValueOutOfRangeException.php';
+include __DIR__ . './../../../../Battle/Exceptions/ValueOutOfTheLimitsException.php';
 
 /**
  * Class SkillTest
@@ -14,7 +14,7 @@ class SkillTest extends \PHPUnit\Framework\TestCase
      *
      * @param $chance
      * @param $usage
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testConstructorCreatesInstanceForInRangeValues($chance, $usage)
     {
@@ -24,12 +24,11 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     /**
      * @dataProvider outOfRangeValues
      *
-     * @expectedException ValueOutOfRangeException
-     * @expectedExceptionMessage The chance parameter should be between 0 and 100
+     * @expectedException ValueOutOfTheLimitsException
      *
      * @param $chance
      * @param $usage
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testConstructorReceivesValuesOutOfRangeExpectException($chance, $usage)
     {
@@ -37,7 +36,7 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testGetChance()
     {
@@ -47,7 +46,7 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testGetUsage()
     {
@@ -57,7 +56,7 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testGetName()
     {
@@ -69,9 +68,9 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
-    public function testGetDescription()
+    public function testGetShortDescription()
     {
         $skill = new MagicShield(40, Skill::DEFENCE);
         $description = $skill->getShortDescription();
@@ -80,8 +79,16 @@ class SkillTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(MagicShield::DESCRIPTION, $description);
     }
 
+    public function testGetLongDescription()
+    {
+        $skill = new MagicShield(40, Skill::DEFENCE);
+        $description = $skill->getLongDescription();
+
+        $this->assertIsString($description);
+    }
+
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testHasChanceToAppearReturnsBool()
     {
@@ -106,6 +113,4 @@ class SkillTest extends \PHPUnit\Framework\TestCase
             [100, Skill::ATTACK]
         ];
     }
-
-
 }

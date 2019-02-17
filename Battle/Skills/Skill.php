@@ -1,6 +1,6 @@
 <?php
 
-include './../Exceptions/ValueOutOfTheLimits.php';
+include './../Exceptions/ValueOutOfTheLimitsException.php';
 
 /**
  * Class Skill
@@ -15,6 +15,7 @@ abstract class Skill
 
     const ATTACK = 'attack';
     const DEFENCE = 'defence';
+
     const NAME = 'Skill name';
     const DESCRIPTION = 'Skill description';
 
@@ -22,12 +23,12 @@ abstract class Skill
      * Skill constructor.
      * @param int $chance
      * @param string $usage
-     * @throws ValueOutOfTheLimits
+     * @throws ValueOutOfTheLimitsException
      */
     public function __construct(int $chance, string $usage)
     {
         if ($chance < 0 || $chance > 100) {
-            throw new ValueOutOfTheLimits('The chance parameter should be between 0 and 100');
+            throw new ValueOutOfTheLimitsException('The chance parameter should be between 0 and 100');
         }
 
         $this->chance = $chance;
@@ -35,17 +36,17 @@ abstract class Skill
     }
 
     /**
-     * @return mixed
+     * @return int
      */
-    public function getChance()
+    public function getChance(): int
     {
         return $this->chance;
     }
 
     /**
-     * @return mixed
+     * @return string
      */
-    public function getUsage()
+    public function getUsage(): string
     {
         return $this->usage;
     }
@@ -53,7 +54,7 @@ abstract class Skill
     /**
      * @return string
      */
-    public function getName()
+    public function getName(): string
     {
         return static::NAME;
     }
@@ -61,12 +62,12 @@ abstract class Skill
     /**
      * @return string
      */
-    public function getShortDescription()
+    public function getShortDescription(): string
     {
         return static::DESCRIPTION;
     }
 
-    public function getLongDescription()
+    public function getLongDescription(): string
     {
         return static::DESCRIPTION .
             " There’s a $this->chance% chance he’ll use this skill every time he $this->usage" . "s.";
@@ -86,5 +87,5 @@ abstract class Skill
      * @param float $finalDamage
      * @return float
      */
-    public abstract function run(float $initialDamage, float $finalDamage);
+    public abstract function run(float $initialDamage, float $finalDamage): float ;
 }

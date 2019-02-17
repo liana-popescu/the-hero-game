@@ -1,6 +1,6 @@
 <?php
 
-class ValueOutOfTheLimits extends RangeException
+class ValueOutOfTheLimitsException extends RangeException
 {
     public function __construct(string $message)
     {

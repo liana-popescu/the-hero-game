@@ -7,9 +7,14 @@ include __DIR__ . '/../../../../Battle/Skills/Skill.php';
 include __DIR__ . '/../../../../Battle/States/State.php';
 include __DIR__ . '/../../../../Battle/Creatures/Creature.php';
 
+/**
+ * Class CreatureTest
+ */
 class CreatureTest extends \PHPUnit\Framework\TestCase
 {
-
+    /**
+     * @throws ReflectionException
+     */
     public function testConstructorCreatesInstance()
     {
         $numericIntervalMock = $this->createMock(NumericInterval::class);
@@ -31,6 +36,9 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf(Creature::class, $creature);
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testGetName()
     {
         $numericIntervalMock = $this->createMock(NumericInterval::class);
@@ -52,6 +60,9 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals('name', $creature->getName());
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testGetState()
     {
         $numericIntervalMock = $this->createMock(NumericInterval::class);
@@ -73,6 +84,9 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $this->assertInstanceOf(State::class, $creature->getState());
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testGetSkills()
     {
         $numericIntervalMock = $this->createMock(NumericInterval::class);
@@ -156,6 +170,9 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $creature->initializeState();
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testIsLucky()
     {
         $numericIntervalMock = $this->getMockBuilder(NumericInterval::class)
@@ -221,6 +238,9 @@ class CreatureTest extends \PHPUnit\Framework\TestCase
         $this->assertIsBool($creature->isLucky());
     }
 
+    /**
+     * @throws ReflectionException
+     */
     public function testGetSkillsFilteredByUsage()
     {
         $numericIntervalMock = $this->createMock(NumericInterval::class);

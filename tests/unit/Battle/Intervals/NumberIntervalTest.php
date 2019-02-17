@@ -1,12 +1,14 @@
 <?php
+
+include __DIR__ . '/../../../../Battle/Intervals/NumericInterval.php';
+
 /**
- * Created by PhpStorm.
- * User: lpopescu
- * Date: 2019-02-17
- * Time: 16:15
+ * Class NumberIntervalTest
  */
-
-class NumberIntervalTest
+class NumberIntervalTest extends \PHPUnit\Framework\TestCase
 {
-
+    public function testConstructor()
+    {
+        $this->assertInstanceOf(NumericInterval::class, new NumericInterval(2, 5));
+    }
 }

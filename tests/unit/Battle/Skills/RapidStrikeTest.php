@@ -9,7 +9,7 @@ include __DIR__ . '/../../../../Battle/Skills/RapidStrike.php';
 class RapidStrikeTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
     public function testConstructorCreatesInstance()
     {
@@ -17,13 +17,12 @@ class RapidStrikeTest extends \PHPUnit\Framework\TestCase
     }
 
     /**
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimitsException
      */
-    public function testRunReturnsTheDemageValue()
+    public function testRunReturnsTheDamageValue()
     {
         $rapidStrike = new RapidStrike(30, Skill::ATTACK);
 
-        $this->assertEquals(24, $rapidStrike->run(24));
+        $this->assertEquals(48, $rapidStrike->run(24, 24));
     }
-
 }

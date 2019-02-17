@@ -1,17 +1,22 @@
 <?php
 
 include_once __DIR__ . '/Interval.php';
+include_once __DIR__ . '/../Exceptions/ValueOutOfTheLimitsException.php';
 
 /**
  * Class PercentageInterval
  */
 class PercentageInterval extends Interval
 {
-
-    public function validateLimits()
+    /**
+     * @param int $min
+     * @param int $max
+     * @throws RangeException
+     */
+    protected function validateLimits($min, $max)
     {
-        if ($this->min < 0 || $this->max > 100) {
-            throw new Exception('Out of the bounds');
+        if ($min < 0 || $max > 100) {
+            throw new ValueOutOfTheLimitsException('Out of the bounds');
         }
     }
 }
