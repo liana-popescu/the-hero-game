@@ -1,7 +1,7 @@
 <?php
 
-require __DIR__ . '/../../../../Battle/Ranges/Range.php';
-require __DIR__ . '/../../../../Battle/Exceptions/ValueOutOfRangeException.php';
+include __DIR__ . '/../../../../Battle/Ranges/Range.php';
+include __DIR__ . '/../../../../Battle/Exceptions/ValueOutOfRangeException.php';
 
 class RangeTest extends \PHPUnit\Framework\TestCase
 {
@@ -37,7 +37,7 @@ class RangeTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws ValueOutOfRangeException
      */
-    public function testGetRandomValuesReturnInt()
+    public function testGetRandomValuesReturnsInt()
     {
         $range = new Range(0, 100, true);
 

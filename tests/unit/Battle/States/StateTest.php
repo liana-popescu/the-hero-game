@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/../../../../Battle/States/State.php';
+include __DIR__ . '/../../../../Battle/States/State.php';
 
 class StateTest extends \PHPUnit\Framework\TestCase
 {

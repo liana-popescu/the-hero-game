@@ -5,10 +5,10 @@
  */
 class Range
 {
-    /**
-     * @var int
-     */
+    /** @var int */
     protected $min;
+
+    /** @var int */
     protected $max;
 
     /**
@@ -38,11 +38,12 @@ class Range
     }
 
     /**
+     * Validates weather the received values are in or out of the range
      * @param $min
      * @param $max
      * @throws ValueOutOfRangeException
      */
-    public function validatePercentageLimits($min, $max)
+    public function validatePercentageLimits($min, $max): void
     {
         if ($min < 0 || $max > 100 ){
             throw new ValueOutOfRangeException('The values have to be between 0 and 100');

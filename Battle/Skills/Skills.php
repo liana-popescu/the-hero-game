@@ -6,9 +6,6 @@ class Skills
 {
     private $skills;
 
-    const RAPID_STRIKE = 'Rapid Strike';
-    const MAGIC_SHIELD = 'Magic Shield';
-
     public function __construct(Skill ...$skills)
     {
         $this->skills = $skills;
