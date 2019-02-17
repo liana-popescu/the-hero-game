@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-include './Battle/States/Range.php';
+include './Battle/Ranges/Range.php';
 include './Battle/Skills/Skills.php';
 include './Battle/Skills/Skill.php';
 include './Battle/Skills/RapidStrike.php';

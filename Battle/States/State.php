@@ -21,6 +21,18 @@ class State
     protected $luck;
 
     /**
+     * State constructor.
+     */
+    public function __construct()
+    {
+        $this->health = 0;
+        $this->strength = 0;
+        $this->defence = 0;
+        $this->speed = 0;
+        $this->luck = 0;
+    }
+
+    /**
      * @return int
      */
     public function getHealth(): int

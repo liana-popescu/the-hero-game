@@ -1,6 +1,6 @@
 <?php
 
-include './../States/Range.php';
+include './../Ranges/Range.php';
 include './../States/State.php';
 include './../Skills/Skills.php';
 include './../Skills/Skill.php';
