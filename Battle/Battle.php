@@ -50,12 +50,10 @@ class Battle
         while ($this->currentRoundNumber <= $this->maximumRoundsNumber && $this->areCompetitorsStillAlive()) {
             $this->currentRoundNumber++;
 
-            echo "----------------- ROUND $this->currentRoundNumber -----------------\n";
-
             $this->printInitialRoundInformation();
+
             $this->attack();
 
-            echo "-------------------------------------------\n\n";
 
             $this->switchCompetitorsRoles();
 
@@ -69,44 +67,36 @@ class Battle
      */
     protected function printInitialInformation()
     {
-        echo "\n";
-        echo "The battle is starting...\n";
-        echo "\n";
+        echo "\nThe battle is starting...\n\n";
         echo "  =>  rounds number: $this->maximumRoundsNumber\n";
         echo "  =>  between:       " . $this->hero->getName() . " a.k.a. The Hero\n";
-        echo "                     " . $this->beast->getName() . " a.k.a. The Wild Beast\n";
-        echo "\n";
+        echo "                     " . $this->beast->getName() . " a.k.a. The Wild Beast\n\n";
 
-        $competitors = [$this->hero, $this->beast];
+        $this->printCompetitorState($this->hero);
+        $this->printCompetitorState($this->beast);;
+    }
 
-        /** @var CreatureTest $competitor */
-        foreach ($competitors as $competitor) {
-            echo "\n";
-            echo $competitor->getName() . "\n";
-            echo "  =>  health    " . $competitor->getState()->getHealth() . "\n";
-            echo "  =>  strength  " . $competitor->getState()->getStrength() . "\n";
-            echo "  =>  defence   " . $competitor->getState()->getDefence() . "\n";
-            echo "  =>  speed     " . $competitor->getState()->getSpeed() . "\n";
-            echo "  =>  luck      " . $competitor->getState()->getLuck() . "\n";
-            echo "  =>  skills    \n";
+    protected function printCompetitorState(Creature $competitor)
+    {
+        $skills = $competitor->getSkills()->all();
 
-            $skills = $competitor->getSkills()->all();
+        echo "\n" . strtoupper($competitor->getName()) . " starts with the following scores\n";
+        echo "  =>  health    " . $competitor->getState()->getHealth() . "\n";
+        echo "  =>  strength  " . $competitor->getState()->getStrength() . "\n";
+        echo "  =>  defence   " . $competitor->getState()->getDefence() . "\n";
+        echo "  =>  speed     " . $competitor->getState()->getSpeed() . "\n";
+        echo "  =>  luck      " . $competitor->getState()->getLuck() . "\n";
+        echo "  =>  skills    " . count($skills) . "\n";
 
-            if (count($skills) > 0) {
-
-                /** @var Skill $skill */
-                foreach ($skills as $skill) {
-                    echo "          - " . $skill->getName() . ": " . $skill->getDescription() . "\n";
-                }
-            } else {
-                echo "          No skills :(\n";
+        if (count($skills) > 0) {
+            /** @var Skill $skill */
+            foreach ($skills as $key => $skill) {
+                $key += 1;
+                echo "                " . $key . ": " . $skill->getName() . ": " . $skill->getLongDescription() . "\n";
             }
-
-            echo "\n";
-            echo "\n";
         }
 
-
+        echo "\n";
     }
 
     /**
@@ -114,14 +104,9 @@ class Battle
      */
     protected function printInitialRoundInformation()
     {
-        echo $this->hero->getName() . " health: " . $this->hero->getState()->getHealth() . "\n";
-        echo $this->beast->getName() . " health: " . $this->beast->getState()->getHealth() . "\n";
-
-        echo "\n";
+        echo "----------------- ROUND $this->currentRoundNumber -----------------\n\n";
         echo "Attacker: " . $this->attacker->getName() . "\n";
-        echo "Defender: " . $this->defender->getName() . "\n";
-        echo "\n";
-
+        echo "Defender: " . $this->defender->getName() . "\n\n";
     }
 
     /**
@@ -168,6 +153,11 @@ class Battle
 
     protected function setRolesBasedOnLuck()
     {
+        if ($this->hero->getState()->getLuck() > $this->beast->getState()->getLuck()) {
+            echo "\nThe competitors are equal in power. This battle will not start\n";
+            exit();
+        }
+
         $this->hero->getState()->getLuck() > $this->beast->getState()->getLuck()
             ? $this->setRoles($this->hero, $this->beast)
             : $this->setRoles($this->beast, $this->hero);
@@ -175,45 +165,52 @@ class Battle
 
     protected function attack()
     {
-        $damage = $this->attacker->getState()->getStrength() - $this->defender->getState()->getDefence();
-        $attackerSkills = $this->attacker->getSkillsFilteredByUsage(Skill::ATTACK);
-        $defenderSkills = $this->defender->getSkillsFilteredByUsage(Skill::DEFENCE);
+        $initialDamage = $this->attacker->getState()->getStrength() - $this->defender->getState()->getDefence();
+        $finalDamage = $initialDamage;
 
-        echo "The damage would be " . $damage. "\n";
-        echo "\n";
+        echo "The initial strike damage is " . $initialDamage . "\n\n";
 
-        /** @var Skill $skill */
-        foreach ($attackerSkills as $skill) {
-            if ($skill->hasChanceToAppear()) {
-                $damage += $skill->run($damage);
-                echo "The attacker used the skill " . $skill->getName() . "\n";
-                echo "The damage would be " . $damage. "\n";
-            }
-        }
+        $skillsByType = [
+            $this->attacker->getSkillsFilteredByUsage(Skill::ATTACK),
+            $this->defender->getSkillsFilteredByUsage(Skill::DEFENCE)
+        ];
 
-        foreach ($defenderSkills as $skill) {
-            if ($skill->hasChanceToAppear()) {
-                $damage += $skill->run($damage);
-                echo "The defender used the skill " . $skill->getName() . "\n";
-                echo "The damage would be " . $damage. "\n";
+        foreach ($skillsByType as $skills) {
+            foreach ($skills as $skill) {
+                $this->runSkill($skill, $initialDamage, $finalDamage);
             }
         }
 
         if ($this->isDefenderLucky()) {
-            $damage = 0;
+            $finalDamage = 0;
+            $defenderName = $this->defender->getName();
+            $attackerName = $this->attacker->getName();
 
-            echo $this->defender->getName() . " is so lucky today! He escaped this time by the " .
-                $this->attacker->getName() . "'s attack\n";
+            echo "$defenderName is so lucky today! He escaped this time by the $attackerName 's attack\n";
         }
 
-        echo "FINAL DAMAGE: " . $damage . "\n";
+        echo "FINAL DAMAGE: " . $finalDamage . "\n";
 
-        $this->defender->getState()->setHealth($this->defender->getState()->getHealth() - $damage);
+        $this->defender->getState()->setHealth($this->defender->getState()->getHealth() - $finalDamage);
 
-        echo "\n";
-        echo "FINAL RESULTS:  " . $this->hero->getState()->getHealth() . " health\n " . $this->hero->getName();
-        echo "                " . $this->beast->getState()->getHealth() . " health\n " . $this->beast->getName();
-        echo "\n";
+        $this->printCompetitorFinalState();
+    }
+
+    protected function printCompetitorFinalState()
+    {
+        echo "\nFINAL RESULTS:  " . $this->hero->getName() . " health " . $this->hero->getState()->getHealth() . "\n";
+        echo "                " . $this->beast->getName() . " health " . $this->beast->getState()->getHealth() . "\n";
+        echo "\n-------------------------------------------\n\n";
+    }
+
+    protected function runSkill(Skill $skill, float $initialDamage, float $finalDamage)
+    {
+        $role = $skill->getUsage() === Skill::ATTACK ? 'attacker' : 'defender';
+
+        echo "The " . $role . " will use the skill " . $skill->getName() . "for " . $skill->getShortDescription() . "\n";
+        echo "The damage would be " . $finalDamage . "\n";
+
+        return $finalDamage = $skill->run($initialDamage, $finalDamage);
     }
 
 
@@ -224,7 +221,7 @@ class Battle
             : $this->setRoles($this->hero, $this->beast);
     }
 
-    protected function setRoles(CreatureTest $attacker, CreatureTest $defender)
+    protected function setRoles(Creature $attacker, Creature $defender)
     {
         $this->attacker = &$attacker;
         $this->defender = &$defender;

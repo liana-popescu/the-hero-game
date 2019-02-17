@@ -1,6 +1,6 @@
 <?php
 
-include './../Exceptions/ValueOutOfRangeException.php';
+include './../Exceptions/ValueOutOfTheLimits.php';
 
 /**
  * Class Skill
@@ -22,12 +22,12 @@ abstract class Skill
      * Skill constructor.
      * @param int $chance
      * @param string $usage
-     * @throws ValueOutOfRangeException
+     * @throws ValueOutOfTheLimits
      */
     public function __construct(int $chance, string $usage)
     {
         if ($chance < 0 || $chance > 100) {
-            throw new ValueOutOfRangeException('The chance parameter should be between 0 and 100');
+            throw new ValueOutOfTheLimits('The chance parameter should be between 0 and 100');
         }
 
         $this->chance = $chance;
@@ -61,9 +61,15 @@ abstract class Skill
     /**
      * @return string
      */
-    public function getDescription()
+    public function getShortDescription()
     {
         return static::DESCRIPTION;
+    }
+
+    public function getLongDescription()
+    {
+        return static::DESCRIPTION .
+            " There’s a $this->chance% chance he’ll use this skill every time he $this->usage" . "s.";
     }
 
     /**
@@ -76,8 +82,9 @@ abstract class Skill
     }
 
     /**
-     * @param float $damage
+     * @param float $initialDamage
+     * @param float $finalDamage
      * @return float
      */
-    public abstract function run(float $damage);
+    public abstract function run(float $initialDamage, float $finalDamage);
 }

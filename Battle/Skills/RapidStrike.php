@@ -5,11 +5,16 @@ include './Skill.php';
 class RapidStrike extends Skill
 {
     const NAME = "Rapid Strike";
-    const DESCRIPTION = 'Strike twice while it’s his turn to attack; there’s a 10% chance he’ll use this skill
-                        every time he attacks';
+    const DESCRIPTION = 'Strike twice while it’s his turn to attack.';
 
-    public function run(float $damage): float
+
+    /**
+     * @param float $initialDamage
+     * @param float $finalDamage
+     * @return float
+     */
+    public function run(float $initialDamage, float $finalDamage)
     {
-        return $damage;
+        return $finalDamage + $initialDamage;
     }
 }

@@ -74,7 +74,7 @@ class SkillTest extends \PHPUnit\Framework\TestCase
     public function testGetDescription()
     {
         $skill = new MagicShield(40, Skill::DEFENCE);
-        $description = $skill->getDescription();
+        $description = $skill->getShortDescription();
 
         $this->assertIsString($description);
         $this->assertEquals(MagicShield::DESCRIPTION, $description);

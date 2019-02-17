@@ -5,11 +5,16 @@ include './Skill.php';
 class MagicShield extends Skill
 {
     const NAME = 'Magic Shield';
-    const DESCRIPTION = 'Takes only half of the usual damage when an enemy attacks; there’s a 20%
-                        change he’ll use this skill every time he defends';
+    const DESCRIPTION = 'Takes only half of the usual damage when an enemy attacks.';
 
-    public function run(float $damage): float
+
+    /**
+     * @param float $initialDamage
+     * @param float $finalDamage
+     * @return float
+     */
+    public function run(float $initialDamage, float $finalDamage)
     {
-        return -($damage / 2);
+        return $finalDamage - ($initialDamage / 2);
     }
 }
