@@ -4,7 +4,7 @@ require __DIR__ . '/../../../../Battle/States/State.php';
 
 class StateTest extends \PHPUnit\Framework\TestCase
 {
-    public function testConstructorCreateInstance()
+    public function testConstructorCreatesInstance()
     {
         $this->assertInstanceOf(State::class, new State());
     }
@@ -16,7 +16,7 @@ class StateTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals(0, $state->getHealth());
     }
 
-    public function testSetHealthCorrect()
+    public function testSetHealth()
     {
         $state = new State();
         $state->setHealth(80);
