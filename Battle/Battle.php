@@ -177,8 +177,13 @@ class Battle
         ];
 
         foreach ($skillsByType as $skills) {
+
+            /** @var Skill $skill */
             foreach ($skills as $skill) {
-                $this->runSkill($skill, $initialDamage, $finalDamage);
+
+                if ($skill->hasChanceToAppear()) {
+                    $finalDamage = $this->runSkill($skill, $initialDamage, $finalDamage);
+                }
             }
         }
 
@@ -208,10 +213,12 @@ class Battle
     {
         $role = $skill->getUsage() === Skill::ATTACK ? 'attacker' : 'defender';
 
+        $finalDamage = $skill->run($initialDamage, $finalDamage);
+
         echo "The " . $role . " will use the skill " . $skill->getName() . "for " . $skill->getShortDescription() . "\n";
         echo "The damage would be " . $finalDamage . "\n";
 
-        return $finalDamage = $skill->run($initialDamage, $finalDamage);
+        return $finalDamage;
     }
 
 
