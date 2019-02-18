@@ -22,7 +22,7 @@ You'll see the battle step by step with new updates after
 each round. Let's cross our fingers for Hero.
 
 Feel free to change the play as you like. You can run consecutive battles or change the game competitors. 
-You should not just watch the battles between Order and Celirus.
+You should not just watch the battles between Orderus and Celirus.
 
 ### Running the tests
 
