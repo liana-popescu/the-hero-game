@@ -1,0 +1,36 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/Battle/Creatures/Creature.php';
+require_once __DIR__ . '/Battle/Skills/RapidStrike.php';
+require_once __DIR__ . '/Battle/Skills/MagicShield.php';
+require_once __DIR__ . '/Battle/Battle.php';
+
+$hero = new Creature(
+    'Orderus',
+    new NumericInterval(70,100),
+    new NumericInterval(70,80),
+    new NumericInterval(45,55),
+    new NumericInterval(40,50),
+    new PercentageInterval(10,30),
+    new Skills(
+        new RapidStrike(10, Skill::ATTACK),
+        new MagicShield(20, Skill::DEFENCE)
+    ),
+    new State()
+);
+
+$wildBeast = new Creature(
+    'Celirus',
+    new NumericInterval(60,90),
+    new NumericInterval(60,90),
+    new NumericInterval(45,60),
+    new NumericInterval(40,60),
+    new PercentageInterval(25,40),
+    new Skills(),
+    new State()
+);
+
+$battle = new Battle($hero, $wildBeast, 20);
+
+$battle->start();
