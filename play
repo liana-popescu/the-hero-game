@@ -21,7 +21,7 @@ $hero = new Creature(
 );
 
 $wildBeast = new Creature(
-    'Salerus',
+    'Celirus',
     new NumericInterval(60,90),
     new NumericInterval(60,90),
     new NumericInterval(45,60),
